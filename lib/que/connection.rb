@@ -172,7 +172,7 @@ module Que
         if converter = CAST_PROCS[result.ftype(index)]
           output.each do |hash|
             value = hash.delete(field)
-            value = converter.call(value) if value
+            value = converter.call(value) if value && !value.is_a?(Time)
             hash[symbol] = value
           end
         else
